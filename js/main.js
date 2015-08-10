@@ -20,7 +20,7 @@ $("#search").submit(function(e){
       place = result.response.venues[0]
 
       // Zoom to top result
-      latlng = [place.location.lat,place.location.lng]
+      latlng = [place.location.lat - 0.0055,place.location.lng]
       lnglat = [place.location.lng,place.location.lat]
       map.setView(latlng,14)
 
@@ -41,13 +41,13 @@ $("#search").submit(function(e){
       $.getJSON(fsq_photo,
         function(result){
           photo = result.response.photos.items[0];
-          url = photo.prefix + "300x300" + photo.suffix;
+          url = photo.prefix + "100x100" + photo.suffix;
           $("#place-photo").attr("src",url);
 
           $("#card").removeClass("hidden").addClass("show");
           $("#place-name").text( place.name );
           $("#place-description").text( place.location.formattedAddress );
-          $("#card").animate({"top" : "-" + $("#card").height() - 300 }, 1000);
+          $("#card").animate({"top" : "-" + $("#card").height() - 150 }, 1000);
 
         });
 
