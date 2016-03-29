@@ -1,0 +1,38 @@
+/* ==========================================================================
+   Author's custom styles
+========================================================================== */
+
+body {
+  padding-top: 50px;
+}
+
+.container-fluid {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.custom-popup .leaflet-popup-content-wrapper{
+  background-color: #3F51B5;
+}
+
+.custom-popup .leaflet-popup-tip {
+  border-left:15px solid transparent;
+  border-right:15px solid transparent;
+  border-top:15px solid #3F51B5;
+}
+
+.fsqPopup {
+  color: white;
+}
+
+.fsqPopup img {
+  margin-right: 15px;
+}
+
+.right {
+  text-align: right;
+}
+
+.fsqPopup h1{
+  font-size: 36px;
+}
