@@ -1,6 +1,5 @@
 
 // INIT
-Parse.initialize("XQmd7CYYEys0WH2VqVh6nZzghFf3WXLUCAY7y11s", "IGJAkVBk1tZwWQ7VpCsFGnFj0OTfzstiGliaPGSQ");
 L.mapbox.accessToken = 'pk.eyJ1Ijoib25kcmFlIiwiYSI6IjhmODI5MjRmMDNkYWYxYzNjMzBmZGU0MGQ4NjQ2YjBjIn0.cVmAkqpsuP4BR9eAnz5hCw';
 
 // MAP
