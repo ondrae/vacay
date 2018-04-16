@@ -1,3 +1,10 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  root to: "pages#index"
+
+  devise_for :users
+  # resources :users do
+  #   resources :maps, shallow: true do
+  #     resources :points, shallow: true
+  #   end
+  # end
 end

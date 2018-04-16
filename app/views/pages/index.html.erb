@@ -1,0 +1,21 @@
+<section class="hero is-primary">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        Vacation maps to share with your friends.
+      </h1>
+      <h2 class="subtitle">
+        Easy to make, easy to share 🗺️
+      </h2>
+    </div>
+  </div>
+</section>
+
+<div id='map'></div>
+<script>
+    mapboxgl.accessToken = 'pk.eyJ1Ijoib25kcmFlIiwiYSI6IjhmODI5MjRmMDNkYWYxYzNjMzBmZGU0MGQ4NjQ2YjBjIn0.cVmAkqpsuP4BR9eAnz5hCw';
+    var map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/streets-v10'
+    });
+</script>
