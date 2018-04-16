@@ -28,11 +28,15 @@
     <nav class="navbar">
       <div class="container">
         <div class="navbar-brand">
-          <a class="navbar-item" href="http://localhost:3000">Vacay</a>
+          <a class="navbar-item title" href="http://localhost:3000">Vacay</a>
         </div>
         <div class="navbar-menu is-active">
           <div class="navbar-end">
-            <%= link_to "Login", new_user_session_path, class: "navbar-item" %>
+            <% if user_signed_in? %>
+              <%= link_to current_user.email, user_path(current_user), class: "navbar-item title" %>
+            <% else %>
+              <%= link_to "Login", new_user_session_path, class: "navbar-item" %>
+            <% end %>
           </div>
         </div>
       </div>

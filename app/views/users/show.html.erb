@@ -1,0 +1,12 @@
+<section>
+  <div class="container">
+    <h1 class="title is-1">Maps</h1>
+
+    <ol>
+      <% @user.maps.each do |map| %>
+        <li><%= link_to map.name, map_path(map) %></li>
+      <% end %>
+    </ol>
+
+  </div>
+</section>
