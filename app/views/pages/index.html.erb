@@ -1,21 +1,27 @@
-<section class="hero is-primary">
-  <div class="hero-body">
-    <div class="container">
-      <h1 class="title">
-        Maps to share with your friends.
-      </h1>
-      <h2 class="subtitle">
-        Easy to make, easy to share 🗺️
-      </h2>
-    </div>
+<div id="left-card" class="card">
+  <div class="card-content">
+    <p class="title">
+      Maps to share with your friends.
+    </p>
   </div>
-</section>
+</div>
+
+<script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.2.0/mapbox-gl-geocoder.min.js'></script>
+<link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.2.0/mapbox-gl-geocoder.css' type='text/css' />
+
 
 <div id='map'></div>
 <script>
-    mapboxgl.accessToken = 'pk.eyJ1Ijoib25kcmFlIiwiYSI6IjhmODI5MjRmMDNkYWYxYzNjMzBmZGU0MGQ4NjQ2YjBjIn0.cVmAkqpsuP4BR9eAnz5hCw';
+    mapboxgl.accessToken = '<%= ENV["MAPBOX_ACCESS_TOKEN"] %>';
     var map = new mapboxgl.Map({
         container: 'map',
-        style: 'mapbox://styles/mapbox/streets-v10'
+        style: 'mapbox://styles/mapbox/streets-v10',
+        center: [-79.4512, 43.6568],
+        zoom: 13
+
     });
+
+    map.addControl(new MapboxGeocoder({
+        accessToken: mapboxgl.accessToken
+    }));
 </script>

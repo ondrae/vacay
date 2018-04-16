@@ -2,11 +2,40 @@
   <div class="container">
     <h1 class="title is-1">Maps</h1>
 
-    <ol>
-      <% @user.maps.each do |map| %>
-        <li><%= link_to map.name, map_path(map) %></li>
-      <% end %>
-    </ol>
+    <a class="button is-success is-rounded" href="/maps/new">
+      <span class="icon is-medium">
+      <i class="fas fa-plus-circle"></i>
+    </span>
+      <span>Make a New Map</span>
+    </a>
 
+    <% @user.maps.in_groups_of(3) do |group| %>
+      <div class="columns">
+        <% group.each do |map| %>
+          <% if map %>
+            <div class="column is-one-third">
+              <div class="card">
+                <div class="card-image">
+                  <figure class="image is-4by3">
+                    <img src="https://api.mapbox.com/styles/v1/mapbox/streets-v10/static/-122.4241,37.78,14.25,0,0/400x300?access_token=<%= ENV['MAPBOX_ACCESS_TOKEN'] %>" alt="Placeholder image">
+                  </figure>
+                </div>
+                <div class="card-content">
+                  <div class="media">
+                    <div class="media-content">
+                      <p class="title is-4"><%= map.name %></p>
+                      <p class="subtitle is-6"><%= map.description %></p>
+                    </div>
+                  </div>
+
+                  <div class="content">
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+        </div>
+    <% end %>
   </div>
 </section>

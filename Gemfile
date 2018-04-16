@@ -6,6 +6,9 @@ ruby '2.5.1'
 # Devise for user logins
 gem 'devise'
 
+# Env variables
+gem 'dotenv-rails'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.0'
 # Use postgres as the database for Active Record

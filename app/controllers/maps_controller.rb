@@ -10,20 +10,20 @@ class MapsController < ApplicationController
 
   def new
     @map = Map.new
+
   end
 
   def edit
   end
 
   def create
-    @map = Map.new(map_params)
+    @map = Map.new(map_params.merge(user: current_user))
 
-    respond_to do
-      if @map.save
-        redirect_to @map, notice: 'Map was successfully created.'
-      else
-        render :new
-      end
+
+    if @map.save
+      redirect_to @map, notice: 'Map was successfully created.'
+    else
+      render :new
     end
   end
 

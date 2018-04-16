@@ -3,7 +3,6 @@ Rails.application.routes.draw do
 
   devise_for :users
   resources :users
-  resources :maps do
-    resources :points
-  end
+  resources :maps
+  resources :points
 end

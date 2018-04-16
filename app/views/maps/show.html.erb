@@ -1,22 +1,39 @@
+<div id="left-card" class="card">
+  <div class="card-content">
+    <p class="title">
+      <%= @map.name %>
+    </p>
+    <p class="subtitle">
+      <%= @map.description %>
+    </p>
+    <ul>
+      <strong>Points</strong>
+      <% @map.points do |point| %>
+        <li><%= point.name %></li>
+      <% end %>
+    </ul>
+  </div>
+  <footer class="card-footer">
+    <p class="card-footer-item">
+      <span>
+        View on <a href="https://twitter.com/codinghorror/status/506010907021828096">Twitter</a>
+      </span>
+    </p>
+    <p class="card-footer-item">
+      <span>
+        Share on <a href="#">Facebook</a>
+      </span>
+    </p>
+  </footer>
+</div>
+
+<script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.2.0/mapbox-gl-geocoder.min.js'></script>
+<link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v2.2.0/mapbox-gl-geocoder.css' type='text/css' />
+
 <section>
   <div id="map"></div>
 </section>
 
-<section class="hero">
-  <div class="hero-body">
-    <div class="container">
-      <h1 class="title">
-        <%= @map.name %>
-      </h1>
-      <h2 class="subtitle">
-        <%= @map.description %>
-      </h2>
-
-      <%= link_to 'Edit', edit_map_path(@map) %> |
-      <%= link_to 'Back', maps_path %>
-    </div>
-  </div>
-</section>
 
 <script>
     mapboxgl.accessToken = 'pk.eyJ1Ijoib25kcmFlIiwiYSI6IjhmODI5MjRmMDNkYWYxYzNjMzBmZGU0MGQ4NjQ2YjBjIn0.cVmAkqpsuP4BR9eAnz5hCw';
@@ -24,5 +41,8 @@
         container: 'map',
         style: 'mapbox://styles/mapbox/streets-v10'
     });
-</script>
 
+    map.addControl(new MapboxGeocoder({
+        accessToken: mapboxgl.accessToken
+    }));
+</script>

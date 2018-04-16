@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 2018_04_16_044938) do
 
   create_table "points", force: :cascade do |t|
     t.bigint "map_id"
+    t.string "name"
     t.text "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

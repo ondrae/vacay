@@ -1,63 +1,46 @@
 class PointsController < ApplicationController
   before_action :set_point, only: [:show, :edit, :update, :destroy]
 
-  # GET /points
-  # GET /points.json
   def index
     @points = Point.all
   end
 
-  # GET /points/1
-  # GET /points/1.json
   def show
   end
 
-  # GET /points/new
   def new
     @point = Point.new
   end
 
-  # GET /points/1/edit
   def edit
   end
 
-  # POST /points
-  # POST /points.json
   def create
     @point = Point.new(point_params)
 
-    respond_to do |format|
+    respond_to do
       if @point.save
-        format.html { redirect_to @point, notice: 'Point was successfully created.' }
-        format.json { render :show, status: :created, location: @point }
+        redirect_to @point, notice: 'Point was successfully created.'
       else
-        format.html { render :new }
-        format.json { render json: @point.errors, status: :unprocessable_entity }
+        render :new
       end
     end
   end
 
-  # PATCH/PUT /points/1
-  # PATCH/PUT /points/1.json
   def update
-    respond_to do |format|
+    respond_to do
       if @point.update(point_params)
-        format.html { redirect_to @point, notice: 'Point was successfully updated.' }
-        format.json { render :show, status: :ok, location: @point }
+        redirect_to @point, notice: 'Point was successfully updated.'
       else
-        format.html { render :edit }
-        format.json { render json: @point.errors, status: :unprocessable_entity }
+        render :edit
       end
     end
   end
 
-  # DELETE /points/1
-  # DELETE /points/1.json
   def destroy
     @point.destroy
-    respond_to do |format|
-      format.html { redirect_to points_url, notice: 'Point was successfully destroyed.' }
-      format.json { head :no_content }
+    respond_to do
+      redirect_to points_url, notice: 'Point was successfully destroyed.'
     end
   end
 
