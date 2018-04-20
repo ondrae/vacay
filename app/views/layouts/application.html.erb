@@ -8,32 +8,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Vacay</title>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-
-    <!--<script-->
-      <!--src="https://code.jquery.com/jquery-3.3.1.min.js"-->
-      <!--integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="-->
-      <!--crossorigin="anonymous"></script>-->
-
-    <script src='https://api.mapbox.com/mapbox-gl-js/v0.44.2/mapbox-gl.js'></script>
-    <link href='https://api.mapbox.com/mapbox-gl-js/v0.44.2/mapbox-gl.css' rel='stylesheet' />
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.0/css/bulma.min.css" />
     <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
 
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <nav class="navbar is-transparent">
+    <nav class="navbar">
       <div class="container">
         <div class="navbar-brand">
-          <a class="navbar-item title" href="http://localhost:3000">Vacay</a>
+          <a class="navbar-item" href="http://localhost:3000">Vacay</a>
+
+          <a role="button" id="navbar-burger" class="navbar-burger" aria-label="menu" aria-expanded="false">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+          </a>
         </div>
-        <div class="navbar-menu is-active">
+
+        <div id="navbar-menu" class="navbar-menu">
           <div class="navbar-end">
             <% if user_signed_in? %>
-              <%= link_to "My Maps", user_path(current_user), class: "navbar-item title" %>
+              <%= link_to "My Maps", user_path(current_user), class: "navbar-item" %>
             <% else %>
               <%= link_to "Login", new_user_session_path, class: "navbar-item" %>
             <% end %>
@@ -41,9 +39,6 @@
         </div>
       </div>
     </nav>
-
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
 
     <%= yield %>
   </body>

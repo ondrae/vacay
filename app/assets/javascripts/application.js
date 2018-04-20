@@ -14,3 +14,15 @@
 //= require activestorage
 //= require turbolinks
 //= require_tree .
+
+
+document.addEventListener('DOMContentLoaded', function () {
+
+    var navbarBurger = document.getElementById('navbar-burger');
+    var navbarMenu = document.getElementById('navbar-menu');
+
+    navbarBurger.addEventListener('click', function () {
+        navbarBurger.classList.toggle('is-active');
+        navbarMenu.classList.toggle('is-active');
+    });
+});

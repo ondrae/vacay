@@ -1,0 +1,21 @@
+<div class="tile is-child box">
+  <%= link_to map do %>
+    <div class="card-image">
+      <figure class="image is-4by3">
+        <img src="https://api.mapbox.com/styles/v1/mapbox/streets-v10/static/-122.4241,37.78,14.25,0,0/400x300?access_token=<%= ENV['MAPBOX_ACCESS_TOKEN'] %>" alt="Placeholder image">
+      </figure>
+    </div>
+
+    <div class="card-content">
+      <div class="media">
+        <div class="media-content">
+          <p class="title is-4"><%= link_to map.name, map %></p>
+          <p class="subtitle is-6"><%= map.description %></p>
+        </div>
+      </div>
+
+      <div class="content">
+      </div>
+    </div>
+  <% end %>
+</div>
