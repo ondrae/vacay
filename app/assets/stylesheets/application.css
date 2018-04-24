@@ -16,11 +16,20 @@
 
 .tile.is-child {
     margin: 1rem !important;
+    max-width: 300px;
+}
+
+#search-bar {
+    margin-top: 5px;
+}
+
+#search-bar .level-item .field {
+    width: 100%;
 }
 
 #map {
     position: absolute;
-    top: 50px;
+    top: 104px;
     bottom: 0;
     right: 0;
     width: 100%;
