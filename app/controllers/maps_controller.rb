@@ -8,9 +8,16 @@ class MapsController < ApplicationController
   def show
   end
 
+  def search
+    @search = params[:search]
+
+    response = HTTParty.get("https://api.mapbox.com/geocoding/v5/mapbox.places/Los%20Angeles.json?access_token=#{ENV['MAPBOX_ACCESS_TOKEN']}")
+
+    puts response.body, response.code, response.message, response.headers.inspect
+  end
+
   def new
     @map = Map.new
-
   end
 
   def edit
