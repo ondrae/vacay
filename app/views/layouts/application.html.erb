@@ -18,7 +18,7 @@
   </head>
 
   <body>
-    <div id="main" class="main">
+    <div class="main">
       <nav class="navbar is-info">
         <div class="navbar-brand">
           <a class="navbar-item" href="localhost:3000">Vacay</a>
@@ -26,16 +26,23 @@
         </div>
       </nav>
 
-      <div class="container is-fullhd">
-        <div id="map"></div>
-      </div>
+      <%= yield %>
     </div>
 
     <aside id="menu">
       <nav class="navbar is-info"></nav>
+      <ul class="menu-list">
+        <% if user_signed_in? %>
+        <li>
+          <a>My Maps</a>
+        </li>
+
+        <% else %>
+        <li>
+          <%= link_to "Sign In", new_user_session_path %>
+        </li>
+        <% end %>
+      </ul>
     </aside>
-
-    <%= yield %>
-
   </body>
 </html>

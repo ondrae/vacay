@@ -17,24 +17,19 @@
 
 @import "bulma";
 
-#menu { z-index: 99;}
 
 #map {
     position: relative;
     height: calc(100vh - 55px);
 }
 
+#menu { z-index: 99;}
+
 .c-offcanvas,
-.c-offcanvas-bg,
-#main {
+.main {
     transition: transform .5s ease;
 }
 
-#main  {
-    overflow: hidden;
-    backface-visibility: hidden;
-}
-
-#main.is-open {
+.main.is-open {
     transform: translate3d(17em,0,0)
 }
