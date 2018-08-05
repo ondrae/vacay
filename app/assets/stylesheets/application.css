@@ -21,9 +21,20 @@
 
 #map {
     position: relative;
-    height: 100vh;
+    height: calc(100vh - 55px);
 }
 
-#hamburger {
-    position: absolute; top: 50px; left: 50px; z-index: 88;
+.c-offcanvas,
+.c-offcanvas-bg,
+#main {
+    transition: transform .5s ease;
+}
+
+#main  {
+    overflow: hidden;
+    backface-visibility: hidden;
+}
+
+#main.is-open {
+    transform: translate3d(17em,0,0)
 }

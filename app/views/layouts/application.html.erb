@@ -18,46 +18,24 @@
   </head>
 
   <body>
+    <div id="main" class="main">
+      <nav class="navbar is-info">
+        <div class="navbar-brand">
+          <a class="navbar-item" href="localhost:3000">Vacay</a>
+          <a id="hamburger" role="button" class="navbar-item"><i class="fas fa-bars"></i></a>
+        </div>
+      </nav>
 
-  <div class="container is-fullhd">
-    <aside id="menu" class="menu">
-      <p class="menu-label">
-        General
-      </p>
-      <ul class="menu-list">
-        <li><a>Dashboard</a></li>
-        <li><a>Customers</a></li>
-      </ul>
-      <p class="menu-label">
-        Administration
-      </p>
-      <ul class="menu-list">
-        <li><a>Team Settings</a></li>
-        <li>
-          <a class="is-active">Manage Your Team</a>
-          <ul>
-            <li><a>Members</a></li>
-            <li><a>Plugins</a></li>
-            <li><a>Add a member</a></li>
-          </ul>
-        </li>
-        <li><a>Invitations</a></li>
-        <li><a>Cloud Storage Environment Settings</a></li>
-        <li><a>Authentication</a></li>
-      </ul>
-      <p class="menu-label">
-        Transactions
-      </p>
-      <ul class="menu-list">
-        <li><a>Payments</a></li>
-        <li><a>Transfers</a></li>
-        <li><a>Balance</a></li>
-      </ul>
-    </aside>
-    <div id="map">
-      <i id="hamburger" class="fas fa-bars"></i>
+      <div class="container is-fullhd">
+        <div id="map"></div>
+      </div>
     </div>
-  </div>
-  <%= yield %>
+
+    <aside id="menu">
+      <nav class="navbar is-info"></nav>
+    </aside>
+
+    <%= yield %>
+
   </body>
 </html>

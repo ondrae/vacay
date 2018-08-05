@@ -25,7 +25,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
     menu.offcanvas({
         modifiers: 'left', // default options
-        triggerButton: '#hamburger' // btn to open offcanvas
+        triggerButton: '#hamburger', // btn to open offcanvas
+        modal: false,
+        contentClass: "main"
     });
 
     if (mapdiv.length) {
