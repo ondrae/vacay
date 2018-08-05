@@ -12,22 +12,23 @@
 //
 //= require jquery
 //= require rails-ujs
+//*= require mapbox-gl
 //= require activestorage
-//= require turbolinks
 //= require_tree .
 
 
 document.addEventListener('DOMContentLoaded', function () {
 
-    var navbarBurger = document.getElementById('navbar-burger');
-    var navbarMenu = document.getElementById('navbar-menu');
+    var hamburger = $('#hamburger');
+    var menu = $('#menu');
+    var mapdiv = $('#map');
 
-    navbarBurger.addEventListener('click', function () {
-        navbarBurger.classList.toggle('is-active');
-        navbarMenu.classList.toggle('is-active');
+    menu.offcanvas({
+        modifiers: 'left', // default options
+        triggerButton: '#hamburger' // btn to open offcanvas
     });
 
-    if ($("#map").length) {
+    if (mapdiv.length) {
         //map
         mapboxgl.accessToken = '<%= ENV['MAPBOX_ACCESS_TOKEN'] %>';
         var map = new mapboxgl.Map({
@@ -36,39 +37,6 @@ document.addEventListener('DOMContentLoaded', function () {
             center: [-122.41, 37.77],
             zoom: 10
         });
-
-        var geocoder = new MapboxGeocoder({
-            accessToken: mapboxgl.accessToken
-        });
-
-        // search
-        var client = new MapboxClient('<%= ENV['MAPBOX_ACCESS_TOKEN'] %>');
-
-        $('#search').change(function(event) {
-            search_term = $(this).val();
-            middleOfMap = map.getCenter();
-
-            client.geocodeForward(search_term, {
-                proximity: { latitude: middleOfMap['lat'], longitude: middleOfMap['lng'] }
-            }, function(err, data, res) {
-                // data is the geocoding result as parsed JSON
-                // res is the http response, including: status, headers and entity properties
-
-                // create the popup
-                var popup = new mapboxgl.Popup({closeOnClick: false})
-                    .setLngLat(data.features[0].geometry.coordinates)
-                    .setHTML()
-                    .addTo(map);
-
-                map.panTo(data.features[0].geometry.coordinates, { duration: 1000});
-
-            });
-
-        });
-
-
     }
-
-
 });
 
