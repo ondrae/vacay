@@ -33,3 +33,7 @@
 .main.is-open {
     transform: translate3d(17em,0,0)
 }
+
+#menu-content {
+    padding: 15px;
+}

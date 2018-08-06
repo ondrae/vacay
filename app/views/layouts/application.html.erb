@@ -29,20 +29,30 @@
       <%= yield %>
     </div>
 
-    <aside id="menu">
+    <aside id="menu" class="menu">
       <nav class="navbar is-info"></nav>
-      <ul class="menu-list">
-        <% if user_signed_in? %>
-        <li>
-          <a>My Maps</a>
-        </li>
-
-        <% else %>
-        <li>
-          <%= link_to "Sign In", new_user_session_path %>
-        </li>
-        <% end %>
-      </ul>
+      <div id="menu-content">
+        <ul class="menu-list">
+          <% if user_signed_in? %>
+            <p class="menu-label">
+              Your Maps
+            </p>
+            <% current_user.maps.each do |map| %>
+              <li>
+              <% if map.id.to_s == params[:id] %>
+                  <%= link_to map.name, map_path(map.id), class: "is-active" %>
+              <% else %>
+                  <%= link_to map.name, map_path(map.id) %>
+              <% end %>
+              </li>
+            <% end %>
+          <% else %>
+            <li>
+              <%= link_to "Sign In", new_user_session_path %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
     </aside>
   </body>
 </html>
