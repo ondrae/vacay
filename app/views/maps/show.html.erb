@@ -1,1 +1,42 @@
-<div id='map'></div>
+<%= render 'map_div.html.erb', :locals => { :map => @map } %>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        map.on('load', function () {
+            map.addLayer({
+                "id": "points",
+                "type": "symbol",
+                "source": {
+                    "type": "geojson",
+                    "data": {
+                        "type": "FeatureCollection",
+                        "features": [
+                            <% @points.map do |point| %>
+                              <% if point.long %>
+                              {
+                                  "type": "Feature",
+                                  "geometry": {
+                                      "type": "Point",
+                                      "coordinates": [<%= point.long %>, <%= point.lat %>]
+                                  },
+                                  "properties": {
+                                      "title": "Mapbox SF",
+                                      "icon": "harbor"
+                                  }
+                              }<% if @points.length > 1 %>,<% end %>
+                              <% end %>
+                            <% end %>
+                        ]
+                    }
+                },
+                "layout": {
+                "icon-image": "{icon}-15",
+                "text-field": "{title}",
+                "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
+                "text-offset": [0, 0.6],
+                "text-anchor": "top"
+                }
+            });
+        });
+    });
+</script>

@@ -12,16 +12,15 @@
 //
 //= require jquery
 //= require rails-ujs
-//*= require mapbox-gl
 //= require activestorage
 //= require_tree .
+
 
 
 document.addEventListener('DOMContentLoaded', function () {
 
     var hamburger = $('#hamburger');
     var menu = $('#menu');
-    var mapdiv = $('#map');
 
     menu.offcanvas({
         modifiers: 'left', // default options
@@ -29,16 +28,5 @@ document.addEventListener('DOMContentLoaded', function () {
         modal: false,
         contentClass: "main"
     });
-
-    if (mapdiv.length) {
-        //map
-        mapboxgl.accessToken = '<%= ENV['MAPBOX_ACCESS_TOKEN'] %>';
-        var map = new mapboxgl.Map({
-            container: 'map',
-            style: 'mapbox://styles/mapbox/streets-v10',
-            center: [-122.41, 37.77],
-            zoom: 10
-        });
-    }
 });
 

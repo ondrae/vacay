@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_04_16_044938) do
+ActiveRecord::Schema.define(version: 2018_08_28_035006) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 2018_04_16_044938) do
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "center"
     t.index ["user_id"], name: "index_maps_on_user_id"
   end
 
@@ -30,6 +31,9 @@ ActiveRecord::Schema.define(version: 2018_04_16_044938) do
     t.text "content"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "yelp_link"
+    t.string "long"
+    t.string "lat"
     t.index ["map_id"], name: "index_points_on_map_id"
   end
 

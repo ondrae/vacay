@@ -1,0 +1,19 @@
+<div id="map"></div>
+
+<script>
+    var mapdiv = $('#map');
+    if (mapdiv.length) {
+        //map
+        mapboxgl.accessToken = '<%= ENV['MAPBOX_ACCESS_TOKEN'] %>';
+        window.map = new mapboxgl.Map({
+                container: 'map',
+                style: 'mapbox://styles/mapbox/streets-v10',
+            <% if @map.try(:center) %>
+        center: <%= @map.center %>,
+    <% else %>
+        center: [-122.41, 37.77],
+    <% end %>
+        zoom: 10
+    });
+    }
+</script>

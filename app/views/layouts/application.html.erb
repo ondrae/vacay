@@ -9,11 +9,13 @@
     <title>Vacay</title>
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.47.0/mapbox-gl.css' rel='stylesheet' />
     <link href="https://unpkg.com/js-offcanvas/dist/_css/prefixed/js-offcanvas.css" rel="stylesheet">
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
 
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.47.0/mapbox-gl.js'></script>
     <script src="https://unpkg.com/js-offcanvas/dist/_js/js-offcanvas.pkgd.min.js"></script>
   </head>
 
@@ -21,7 +23,7 @@
     <div class="main">
       <nav class="navbar is-info">
         <div class="navbar-brand">
-          <a class="navbar-item" href="localhost:3000">Vacay</a>
+          <a class="navbar-item" href="/">Vacay</a>
           <a id="hamburger" role="button" class="navbar-item"><i class="fas fa-bars"></i></a>
         </div>
       </nav>
@@ -34,6 +36,33 @@
       <div id="menu-content">
         <ul class="menu-list">
           <% if user_signed_in? %>
+
+            <% if @map %>
+              <p class="menu-label">
+                <%= @map.name %>
+              </p>
+
+
+              <%= form_for @point, remote: true do |f| %>
+                <div class="field">
+                  <label class="label">Add to the map <i class="fas fa-map-marker-alt"></i></label>
+                  <div class="control">
+                    <%= f.text_field :yelp_link, class: "input", placeholder: "https://www.yelp.com/biz/golden-gate-park-san-francisco" %>
+                  </div>
+                  <%= f.hidden_field :map_id, value: @map.id %>
+                  <p class="help">Paste in a yelp link</p>
+                </div>
+              <% end %>
+
+              <ul class="menu-list">
+                <% @map.points.each do |point| %>
+                  <a><%= point.name %></a>
+                <% end %>
+              </ul>
+
+              <br />
+            <% end %>
+
             <p class="menu-label">
               Your Maps
             </p>

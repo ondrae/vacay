@@ -6,6 +6,8 @@ class MapsController < ApplicationController
   end
 
   def show
+    @points = @map.points
+    @point = Point.new
   end
 
   def new

@@ -16,7 +16,7 @@ gem 'jquery-rails'
 gem "bulma-rails", "~> 0.7.1"
 
 # mapbox
-gem 'mapbox-gl-rails'
+# gem 'mapbox-gl-rails'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.0'
