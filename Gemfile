@@ -13,13 +13,13 @@ gem 'httparty'
 gem 'jquery-rails'
 
 # css-grid
-gem "bulma-rails", "~> 0.7.1"
+gem "bulma-rails", "~> 0.7.2"
 
 # mapbox
 # gem 'mapbox-gl-rails'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.2.0'
+gem 'rails', '~> 5.2.2'
 # Use postgres as the database for Active Record
 gem 'pg'
 # Use Puma as the app server

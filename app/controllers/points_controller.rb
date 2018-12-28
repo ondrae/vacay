@@ -16,20 +16,11 @@ class PointsController < ApplicationController
   end
 
   def create
-    uri = URI(point_params[:yelp_link])
-    name = uri.path.split("/").last
-    response = HTTParty.get("https://api.yelp.com/v3/businesses/#{name}", { headers: { "Authorization" => "Bearer D0nhwyqAx8G3oLiZUqQ7jKJooPHLZYRi1TqbYs8bdv4XxpzyyZ7VfoIub-WAWuZ2f0marcVg_oJraUWLyk9FmelR9vLLjKkJOMDY4ijM71mBHjjPXWPe4HXWm79nW3Yx" }})
-    long = response["coordinates"]["longitude"]
-    lat = response["coordinates"]["latitude"]
-    @point = Point.new(long: long, lat: lat, map_id: point_params[:map_id], name: name, yelp_link: point_params[:yelp_link])
 
-    respond_to do |format|
-      if @point.save
-        format.json { head :ok }
-      else
-        format.json { head :bad_request }
-      end
-    end
+    @point = Point.create(point_params)
+    @point.map.update(center: "#{@point.long},#{@point.lat}")
+
+    render json: @point
   end
 
   def update
@@ -57,6 +48,6 @@ class PointsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def point_params
-      params.require(:point).permit(:map_id, :yelp_link)
+      params.require(:point).permit(:map_id, :name, :long, :lat)
     end
 end

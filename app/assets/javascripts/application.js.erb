@@ -11,7 +11,7 @@
 // about supported directives.
 //
 //= require jquery
-//= require rails-ujs
+//= require jquery_ujs
 //= require activestorage
 //= require_tree .
 
@@ -19,14 +19,20 @@
 
 document.addEventListener('DOMContentLoaded', function () {
 
-    var hamburger = $('#hamburger');
     var menu = $('#menu');
+    var close = $('#menu-close');
 
     menu.offcanvas({
         modifiers: 'left', // default options
         triggerButton: '#hamburger', // btn to open offcanvas
         modal: false,
         contentClass: "main"
+    });
+
+    var dataOffcanvas = menu.data('offcanvas-component');
+
+    close.click(function(){
+      dataOffcanvas.toggle();
     });
 });
 

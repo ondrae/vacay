@@ -16,8 +16,11 @@
  */
 
 #map {
-    position: relative;
-    height: calc(100vh - 55px);
+  height: calc(100vh - 350px);
+}
+
+.hero-body{
+  padding: 1.5rem;
 }
 
 #menu { z-index: 99;}
@@ -33,4 +36,30 @@
 
 #menu-content {
     padding: 15px;
+}
+
+#index-hero {
+  width: 100%;
+}
+
+#search-nav {
+  width: 100%;
+  padding: 10px;
+}
+
+.navbar-item {
+  flex-grow: 1;
+}
+
+#hamburger {
+  flex-grow: 0;
+}
+
+#search {
+  width: 100%;
+}
+
+.mapboxgl-ctrl-geocoder {
+  width: 100%;
+  max-width: 100%;
 }

@@ -1,5 +1,22 @@
-<h1>New Map</h1>
+<div id="index-hero" class="hero is-info">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        Vacay 🌴
+      </h1>
+      <h2 class="subtitle">
+        Easily make maps of your favorite places. Share them with your people.
+      </h2>
+      <% if current_user %>
+        <%= render 'maps/form', map: @map %>
+      <% else %>
+        <%= link_to "Sign up", new_user_registration_path, class: "button" %>
+        <%= link_to "Sign in", new_user_session_path, class: "button"  %>
+      <% end %>
+    </div>
+  </div>
+</div>
 
-<%= render 'form', map: @map %>
-
-<%= link_to 'Back', maps_path %>
+<div id="index-map">
+  <%= render 'maps/map_div.html.erb', map: @map %>
+</div>

@@ -1,3 +1,15 @@
-<div class="container is-fullhd">
-  <div id="map"></div>
+<div id="index-hero" class="hero is-info">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        Vacay 🌴
+      </h1>
+      <h2 class="subtitle">
+        Easily make maps of your favorite places. Share them with your people.
+      </h2>
+      <%= link_to "Make a map", new_map_path, class: "button is-large" %>
+    </div>
+  </div>
 </div>
+
+<%= render 'maps/map_div', map: @map %>

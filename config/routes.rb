@@ -4,6 +4,6 @@ Rails.application.routes.draw do
   devise_for :users
   resources :users
   resources :maps
-  post '/search' => 'maps#search'
+  resources :searches, only: :create
   resources :points
 end

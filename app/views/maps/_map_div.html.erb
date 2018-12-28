@@ -1,19 +1,108 @@
 <div id="map"></div>
 
+<div id="place" class="card" hidden>
+  <header class="card-header">
+    <p class="card-header-title">
+    </p>
+
+  </header>
+  <div class="card-content">
+    <div class="content">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.
+
+      <br>
+      <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
+    </div>
+  </div>
+  <footer class="card-footer">
+
+    <% if @point %>
+
+      <%= form_for @point, remote: true do |f| %>
+        <%= f.hidden_field :map_id, value: @map.id %>
+        <%= f.hidden_field :name, id: "point-name" %>
+        <%= f.hidden_field :long, id: "point-long" %>
+        <%= f.hidden_field :lat, id: "point-lat" %>
+
+        <%= submit_tag("Save") %>
+      <% end %>
+      <a class="card-footer-item">Edit</a>
+      <a class="card-footer-item">Delete</a>
+    <% end %>
+  </footer>
+</div>
+
 <script>
     var mapdiv = $('#map');
     if (mapdiv.length) {
-        //map
-        mapboxgl.accessToken = '<%= ENV['MAPBOX_ACCESS_TOKEN'] %>';
-        window.map = new mapboxgl.Map({
-                container: 'map',
-                style: 'mapbox://styles/mapbox/streets-v10',
-            <% if @map.try(:center) %>
-        center: <%= @map.center %>,
-    <% else %>
-        center: [-122.41, 37.77],
-    <% end %>
+      //map
+      mapboxgl.accessToken = '<%= Rails.application.credentials.mapbox_access_token %>';
+      window.map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/mapbox/streets-v10',
+        <% if @map.try(:center).present? %>
+          center: <%= @map.center.split(",").map{|i|i.to_f} %>,
+        <% else %>
+          center: [-122.41, 37.77],
+        <% end %>
         zoom: 10
-    });
+      });
+
+
+      // Add existing markers
+      <% if @map && @map.points %>
+        <% @map.points.each do |place| %>
+          <% if place.long && place.lat %>
+            var marker = new mapboxgl.Marker()
+            .setLngLat({lon: <%= place.long %>, lat: <%= place.lat %>})
+            .addTo(map);
+
+            marker.getElement().setAttribute("place", "<%= place.name %>");
+            marker.getElement().setAttribute("coordinates", [<%= place.long %>, <%= place.lat %>]);
+          <% end %>
+        <% end %>
+      <% end %>
+
+      $(".mapboxgl-marker").click(function(e, d){
+        console.log(e.currentTarget.attributes.place["value"]);
+        $("#place").show();
+        $(".card-header-title").text(e.currentTarget.attributes.place["value"]);
+        $("#map").height(250);
+
+        // fly to that point
+        console.log(e.currentTarget.attributes.coordinates["value"]);
+        coord = e.currentTarget.attributes.coordinates["value"].split(",")
+        map.flyTo({center: coord})
+      })
+
+
+      if ($("#search").length) {
+        geocoder = new MapboxGeocoder({
+          accessToken: mapboxgl.accessToken,
+          country: "US"
+        });
+
+        document.getElementById('search').appendChild(geocoder.onAdd(map));
+
+        // Listen for the `result` event from the MapboxGeocoder that is triggered when a user
+        // makes a selection and add a symbol that matches the result.
+        geocoder.on('result', function(ev) {
+          console.log(ev.result);
+
+          var marker = new mapboxgl.Marker()
+          .setLngLat(ev.result.geometry.coordinates)
+          .addTo(map);
+
+          $("#place").show();
+
+          $(".card-header-title").text(ev.result.text);
+          $("#point-name").attr("value", ev.result.text);
+          $("#point-long").attr("value", ev.result.geometry.coordinates[0]);
+          $("#point-lat").attr("value", ev.result.geometry.coordinates[1]);
+
+          $("#map").height(250);
+        });
+
+      }
     }
 </script>

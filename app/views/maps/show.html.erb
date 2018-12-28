@@ -1,42 +1,16 @@
-<%= render 'map_div.html.erb', :locals => { :map => @map } %>
+<div id="index-hero" class="hero is-info">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        <%= @map.name %>
+      </h1>
+      <h2 class="subtitle">
+        <%= @map.description %>
+      </h2>
+    </div>
+    <%= render 'searches/search' %>
+  </div>
+</div>
 
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        map.on('load', function () {
-            map.addLayer({
-                "id": "points",
-                "type": "symbol",
-                "source": {
-                    "type": "geojson",
-                    "data": {
-                        "type": "FeatureCollection",
-                        "features": [
-                            <% @points.map do |point| %>
-                              <% if point.long %>
-                              {
-                                  "type": "Feature",
-                                  "geometry": {
-                                      "type": "Point",
-                                      "coordinates": [<%= point.long %>, <%= point.lat %>]
-                                  },
-                                  "properties": {
-                                      "title": "Mapbox SF",
-                                      "icon": "harbor"
-                                  }
-                              }<% if @points.length > 1 %>,<% end %>
-                              <% end %>
-                            <% end %>
-                        ]
-                    }
-                },
-                "layout": {
-                "icon-image": "{icon}-15",
-                "text-field": "{title}",
-                "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
-                "text-offset": [0, 0.6],
-                "text-anchor": "top"
-                }
-            });
-        });
-    });
-</script>
+<%= render 'maps/map_div', map: @map %>
+
